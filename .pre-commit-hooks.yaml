@@ -16,7 +16,7 @@
     entry: ruff format --force-exclude
     language: python
     types_or: [python, pyi, jupyter]
-    args: []
+    args: [ --config=./config/ruff.toml ]
     require_serial: true
     additional_dependencies: []
     minimum_pre_commit_version: "2.9.2"
