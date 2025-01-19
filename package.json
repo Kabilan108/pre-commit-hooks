@@ -1,5 +1,24 @@
 {
     "name": "@kabilan108/pre-commit-hooks",
     "description": "Biome pre-commit node package",
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "prettier": "@biomejs/biome/configuration",
+    "@biomejs/biome": {
+        "organizeImports": {
+            "enabled": true
+        },
+        "linter": {
+            "enabled": true,
+            "rules": {
+                "recommended": true
+            }
+        },
+        "formatter": {
+            "enabled": true,
+            "formatWithErrors": false,
+            "indentStyle": "space",
+            "indentWidth": 4,
+            "lineWidth": 88
+        }
+    }
 }

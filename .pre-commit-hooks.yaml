@@ -5,10 +5,23 @@
     entry: ruff check --force-exclude
     language: python
     types_or: [python, pyi, jupyter]
-    args: [ --fix, --config=./config/ruff.toml ]
+    args: [ --fix ]
     require_serial: true
     additional_dependencies: []
     minimum_pre_commit_version: "2.9.2"
+    files: ''
+    exclude: &excludes |
+            (?x)^(
+                .direnv/.*|
+                .git/.*|
+                .ipynb_checkpoints/.*|
+                .pytest_cache/.*|
+                .ruff_cache/.*|
+                .venv/.*|
+                build/.*|
+                dist/.*|
+                node_modules/.*
+            )$
 
 -   id: ruff-format
     name: ruff-format
@@ -16,15 +29,16 @@
     entry: ruff format --force-exclude
     language: python
     types_or: [python, pyi, jupyter]
-    args: [ --config=./config/ruff.toml ]
     require_serial: true
     additional_dependencies: []
     minimum_pre_commit_version: "2.9.2"
+    files: ''
+    exclude: *excludes
 
 # -- biome
 -   id: biome-ci
     name: biome ci
-    entry: biome ci --files-ignore-unknown=true --no-errors-on-unmatched --config=./config/biome.json
+    entry: biome ci --files-ignore-unknown=true --no-errors-on-unmatched
     language: node
     types: [text]
     files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?|css|svelte|vue|astro|graphql|gql)$"
@@ -32,7 +46,7 @@
 
 -   id: biome-check
     name: biome check
-    entry: biome check --write --files-ignore-unknown=true --no-errors-on-unmatched --config=./config/biome.json
+    entry: biome check --write --files-ignore-unknown=true --no-errors-on-unmatched
     language: node
     types: [text]
     files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?|css|svelte|vue|astro|graphql|gql)$"
@@ -40,7 +54,7 @@
 
 -   id: biome-format
     name: biome format
-    entry: biome format --write --files-ignore-unknown=true --no-errors-on-unmatched --config=./config/biome.json
+    entry: biome format --write --files-ignore-unknown=true --no-errors-on-unmatched
     language: node
     types: [text]
     files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?|css|svelte|vue|astro|graphql|gql)$"
@@ -48,7 +62,7 @@
 
 -   id: biome-lint
     name: biome lint
-    entry: biome lint --write --files-ignore-unknown=true --no-errors-on-unmatched --config=./config/biome.json
+    entry: biome lint --write --files-ignore-unknown=true --no-errors-on-unmatched
     language: node
     types: [text]
     files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?|css|svelte|vue|astro|graphql|gql)$"
