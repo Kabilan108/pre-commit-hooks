@@ -1,0 +1,5 @@
+{
+    "name": "@kabilan108/pre-commit-hooks",
+    "description": "Biome pre-commit node package",
+    "version": "0.0.0"
+}
